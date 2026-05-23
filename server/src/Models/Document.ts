@@ -4,7 +4,7 @@ export interface IDocument extends MongooseDocument {
     title: string;
     content: object;
     owner: mongoose.Types.ObjectId;
-    collaboraters: mongoose.Types.ObjectId[];
+    collaborators: mongoose.Types.ObjectId[];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -18,10 +18,16 @@ const documentSchema = new Schema<IDocument>(
         },
         content: {
             type: Schema.Types.Mixed,
+            default: {
+                ops: []
+            }
+        },
+        owner: {
+            type: Schema.Types.ObjectId,
             ref: "User",
             required: true
         },
-        collaboraters: [
+        collaborators: [
             {
                 type: Schema.Types.ObjectId,
                 ref: "User"
@@ -33,6 +39,6 @@ const documentSchema = new Schema<IDocument>(
     }
 )
 
-const DocumentModel = mongoose.model<IDocument>("Document" ,documentSchema)
+const DocumentModel = mongoose.model<IDocument>("Document", documentSchema)
 
 export default DocumentModel;

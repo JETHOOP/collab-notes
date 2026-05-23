@@ -4,7 +4,7 @@ import {Server} from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
-
+import testRoutes from "./routes/testRoutes";
 dotenv.config();
 connectDB();
 
@@ -24,6 +24,7 @@ app.use(express.json());
 app.get('/' , (req:Request , res:Response)=>{
     res.send("Typescript backend running")
 })
+app.use("/api/test", testRoutes);
 
 io.on('connection' , (socket)=>{
     console.log(`client connected: ${socket.id}`);
