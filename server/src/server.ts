@@ -33,9 +33,9 @@ io.on('connection' , (socket)=>{
         socket.broadcast.emit('update-frontend',data)
     })
 
-    socket.on("disconnect",()=>[
-        console.log(`client disconnected : ${socket.id}`)
-    ])
+    socket.on("disconnect", () => {
+        console.log(`👋 Client disconnected: ${socket.id}`);
+    });
 })
 
 server.listen(4000 , ()=>{
