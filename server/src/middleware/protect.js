@@ -1,22 +1,7 @@
-import {
-    Request,
-    Response,
-    NextFunction
-} from "express";
+const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
-import jwt from "jsonwebtoken";
-
-import User from "../models/user";
-
-interface JwtPayload {
-    id: string;
-}
-
-const protect = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<void> => {
+const protect = async (req, res, next) => {
 
     try {
 
@@ -44,8 +29,8 @@ const protect = async (
 
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET as string
-        ) as JwtPayload;
+            process.env.JWT_SECRET
+        );
 
         // Find user
 
@@ -76,4 +61,4 @@ const protect = async (
 
 };
 
-export default protect;
+module.exports = protect;

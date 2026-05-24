@@ -1,16 +1,12 @@
-import protect from '../middleware/protect';    
-import express, {
-    Request,
-    Response
-} from "express";
-
+const express = require("express");
+const protect = require("../middleware/protect");
 
 const router = express.Router();
 
 router.get(
     "/me",
     protect,
-    async (req: Request, res: Response) => {
+    async (req, res) => {
 
         res.status(200).json({
 
@@ -23,4 +19,4 @@ router.get(
     }
 );
 
-export default router;
+module.exports = router;
