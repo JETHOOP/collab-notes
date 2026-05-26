@@ -1,10 +1,11 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const testRoutes = require('./routes/testRoutes');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import testRoutes from './routes/testRoutes.js';
+import authRoutes  from './routes/auth.js';
 
 dotenv.config();
 connectDB();
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/test', testRoutes);
+app.use('/api/auth', authRoutes);
 
 io.on('connection', (socket) => {
     console.log(`client connected: ${socket.id}`);

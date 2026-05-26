@@ -19,10 +19,23 @@ const userSchema = new Schema(
             required: true
         }
     }, {
-        timestamps: true
-    }
+    timestamps: true
+}
 );
+
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        next()
+    }
+    const salt = await bcrypt.gensalt(10)
+    this.password = await bcrypt.hash(this.password , salt)
+    next()
+})
+
+userSchema.methods.matchPassword = async function(enteredPassword){
+    return await bcrypt.compare(enteredPassword , this.password)
+}
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+export default User;
