@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import testRoutes from './routes/testRoutes.js';
-import authRoutes  from './routes/auth.js';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 connectDB();
@@ -30,7 +30,6 @@ app.get('/', (req, res) => {
     res.send('JavaScript backend running');
 });
 
-app.use('/api/test', testRoutes);
 app.use('/api/auth', authRoutes);
 
 io.on('connection', (socket) => {
