@@ -4,7 +4,6 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import testRoutes from './routes/testRoutes.js';
 import authRoutes from './routes/auth.js';
 
 dotenv.config();
