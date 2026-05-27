@@ -5,7 +5,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
-
+import socketHandler from './socketHandler.js';
+import documentRoutes from "./routes/documents.js";
 dotenv.config();
 connectDB();
 
@@ -24,25 +25,13 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
-
+socketHandler(io);
 app.get('/', (req, res) => {
     res.send('JavaScript backend running');
 });
 
 app.use('/api/auth', authRoutes);
-
-io.on('connection', (socket) => {
-    console.log(`client connected: ${socket.id}`);
-
-    socket.on('changed', (data) => {
-        console.log('Realtime change received:', data);
-        socket.broadcast.emit('update-frontend', data);
-    });
-
-    socket.on('disconnect', () => {
-        console.log(`client disconnected: ${socket.id}`);
-    });
-});
+app.use("/api/documents", documentRoutes);
 
 server.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`);
