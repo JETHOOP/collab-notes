@@ -51,7 +51,6 @@ const socketHandler = (io) => {
 
         });
 
-
          // RECEIVE CHANGES
         socket.on("send-changes", (delta) => {
 
