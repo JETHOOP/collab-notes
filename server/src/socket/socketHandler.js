@@ -42,11 +42,8 @@ const socketHandler = (io) => {
 
                 });
 
-
             } catch (error) {
-
                 console.log(error.message);
-
             }
 
         });
