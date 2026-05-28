@@ -92,7 +92,6 @@ const socketHandler = (io) => {
 
         });
 
-
         // OPTIONAL CURSOR TRACKING
         socket.on("cursor-move", (cursorData) => {
 
