@@ -29,10 +29,8 @@ const socketHandler = (io) => {
 
                 }
 
-
                 // SEND DOCUMENT CONTENT TO CURRENT USER
                 socket.emit("load-document", document.content);
-
 
                 // RECEIVE CHANGES FROM ONE USER
                 socket.on("send-changes", (delta) => {
