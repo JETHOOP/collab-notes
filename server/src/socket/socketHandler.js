@@ -33,11 +33,9 @@ const socketHandler = (io) => {
                 socket.emit("load-document", document.content);
                 // RECEIVE CHANGES FROM ONE USER
                 socket.on("send-changes", (delta) => {
-
                     // SEND CHANGES TO EVERYONE ELSE IN ROOM
                     socket.to(documentId).emit("receive-changes", delta);
                 });
-
             } catch (error) {
                 console.log(error.message);
             }
