@@ -22,11 +22,9 @@ const socketHandler = (io) => {
 
                 // CHECK DOCUMENT EXISTS
                 if (!document) {
-
                     return socket.emit("document-error", {
                         message: "Document not found"
                     });
-
                 }
 
                 // SEND DOCUMENT CONTENT TO CURRENT USER
