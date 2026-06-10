@@ -22,7 +22,6 @@ const io = new Server(server, {
         methods: ['GET', 'POST', 'PUT', 'DELETE']
     }
 });
-
 app.use(cors());
 app.use(express.json());
 socketHandler(io);
