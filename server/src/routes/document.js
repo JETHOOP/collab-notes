@@ -38,16 +38,6 @@ router.get("/", protect, async (req, res) => {
     }
 })
 
-router.get("/search", protect, async (req, res) => {
-    try {
-        const { query } = req.query
-    }catch(error){
-        res.status(500).json({
-            message: error.message
-        })
-    }
-})
-
 //get doucment by id
 router.get("/:id", protect, async (req, res) => {
     try {
