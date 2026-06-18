@@ -38,6 +38,17 @@ router.get("/", protect, async (req, res) => {
     }
 })
 
+router.get("/owned", protect, async (req, res) => {
+    try {
+        const documents = await Document.find({ owner: req.user._id })
+        res.json(documents)
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+})
+
 //get doucment by id
 router.get("/:id", protect, async (req, res) => {
     try {
